@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recepty | {{ recipe.name }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                        },
+                        secondary: {
+                            500: '#10B981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-3xl font-bold text-gray-800">🍳 Recepty</h1>
+                    <a href="{{ url_for('index') }}" class="text-primary-600 hover:text-primary-800 transition duration-200">
+                        ← Zpět na seznam receptů
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <!-- Recipe Header -->
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800">{{ recipe.name }}</h2>
+                </div>
+                
+                <!-- Recipe Content -->
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">Odkaz na recept</h3>
+                        <a href="{{ recipe.url }}" target="_blank" class="text-primary-600 hover:text-primary-800 break-words">
+                            {{ recipe.url }}
+                        </a>
+                    </div>
+                    
+                    {% if recipe.description %}
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">Popis</h3>
+                        <p class="text-gray-600 whitespace-pre-line">{{ recipe.description }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    {% if recipe.pdf_path %}
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">PDF verze</h3>
+                        <a href="{{ url_for('static', filename='uploads/' + recipe.pdf_path) }}" target="_blank" class="inline-flex items-center text-secondary-600 hover:text-secondary-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            Stáhnout PDF
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-gray-200 py-6">
+            <div class="container mx-auto px-4 text-center text-gray-500">
+                <p>© 2023 Recepty. Všechna práva vyhrazena.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>{{ recipe.name }}</title>
+</head>
+<body>
+    <h1>{{ recipe.name }}</h1>
+    <p>URL: <a href="{{ recipe.url }}">{{ recipe.url }}</a></p>
+    <p>Description: {{ recipe.description }}</p>
+    {% if recipe.pdf_path %}
+        <p>PDF: <a href="{{ url_for('static', filename='uploads/' + recipe.pdf_path) }}">View PDF</a></p>
+    {% endif %}
+</body>
+</html> -->

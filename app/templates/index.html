@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recepty | Domů</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                        },
+                        secondary: {
+                            500: '#10B981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm">
+            <div class="container mx-auto px-4 py-6">
+                <h1 class="text-3xl font-bold text-gray-800">🍳 Recepty</h1>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <a href="{{ url_for('create') }}" class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200 text-center">
+                    + Vytvořit nový recept
+                </a>
+                <a href="{{ url_for('add_sample_data') }}" class="bg-secondary-500 hover:bg-secondary-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200 text-center">
+                    Přidat ukázková data
+                </a>
+            </div>
+
+            <!-- Recipes List -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h2 class="text-xl font-semibold text-gray-800">Seznam receptů</h2>
+                </div>
+                <ul class="divide-y divide-gray-200">
+                    {% for recipe in recipes %}
+                        <li>
+                            <a href="{{ url_for('recipe', recipe_id=recipe.id) }}" class="block hover:bg-gray-50 transition duration-150">
+                                <div class="px-6 py-4">
+                                    <h3 class="text-lg font-medium text-primary-600">{{ recipe.name }}</h3>
+                                    <p class="text-gray-500 mt-1">Klikněte pro zobrazení detailu</p>
+                                </div>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="px-6 py-8 text-center">
+                            <p class="text-gray-500">Žádné recepty nebyly nalezeny.</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-gray-200 py-6">
+            <div class="container mx-auto px-4 text-center text-gray-500">
+                <p>© 2023 Recepty. Všechna práva vyhrazena.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Recepty</title>
+</head>
+<body>
+    <h1>Recepty</h1>
+    <a href="{{ url_for('create') }}">Create New Recipe</a>
+    <a href="{{ url_for('add_sample_data') }}">Add Sample Data</a>
+    <ul>
+        {% for recipe in recipes %}
+            <li><a href="{{ url_for('recipe', recipe_id=recipe.id) }}">{{ recipe.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html> -->
