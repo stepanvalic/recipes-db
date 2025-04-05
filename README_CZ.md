@@ -32,11 +32,34 @@ Aplikace pro správu receptů.
     pip install -r requirements.txt
     ```
 
+## Konfigurace
+
+Vytvořte soubor `.env` v kořenovém adresáři s následujícími proměnnými:
+
+*   `DATABASE_URL`: URL databáze (např. `mysql://user:password@host/database`)
+*   `FLASK_SECRET_KEY`: Tajný klíč pro Flask aplikaci
+*   `PORT`: Port, na kterém má aplikace běžet (výchozí: 4000)
+
+Příklad:
+
+```
+DATABASE_URL=mysql://user:password@host/database
+FLASK_SECRET_KEY=random_secret_key
+PORT=4000
+```
+
 ## Spuštění
+
+1.  Ujistěte se, že máte nastavenou databázi a nakonfigurovanou v souboru `.env`.
+2.  Spusťte aplikaci:
 
 ```bash
 python run.py
 ```
+
+## Počáteční data
+
+Můžete použít skript `init.sql` pro vložení počátečních dat do databáze.
 
 ## Popis
 
