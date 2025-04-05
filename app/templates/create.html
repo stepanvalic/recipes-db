@@ -30,28 +30,23 @@
 </head>
 <body class="bg-gray-50 font-sans">
     <div class="min-h-screen flex flex-col">
-        <!-- Header -->
         <header class="bg-white shadow-sm">
             <div class="container mx-auto px-4 py-6">
                 <h1 class="text-3xl font-bold text-gray-800">🍳 Recepty</h1>
             </div>
         </header>
 
-        <!-- Main Content -->
         <main class="flex-grow container mx-auto px-4 py-8">
             <div class="max-w-2xl mx-auto">
-                <!-- Page Title -->
                 <div class="mb-8">
                     <h2 class="text-2xl font-bold text-gray-800">Vytvořit nový recept</h2>
                     <p class="text-gray-500 mt-2">Vyplňte formulář pro přidání nového receptu</p>
                 </div>
 
-                <!-- Form -->
                 <div class="bg-white rounded-lg shadow overflow-hidden">
                     <form method="POST" enctype="multipart/form-data" class="p-6">
                         {{ form.csrf_token }}
                         
-                        <!-- Name Field -->
                         <div class="mb-6">
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                                 {{ form.name.label }}
@@ -59,7 +54,6 @@
                             {{ form.name(size=32, class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500") }}
                         </div>
                         
-                        <!-- URL Field -->
                         <div class="mb-6">
                             <label for="url" class="block text-sm font-medium text-gray-700 mb-2">
                                 {{ form.url.label }}
@@ -67,7 +61,6 @@
                             {{ form.url(size=32, class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500") }}
                         </div>
                         
-                        <!-- Description Field -->
                         <div class="mb-6">
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
                                 {{ form.description.label }}
@@ -75,7 +68,6 @@
                             {{ form.description(rows=4, cols=50, class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500") }}
                         </div>
                         
-                        <!-- PDF Field -->
                         <div class="mb-8">
                             <label for="pdf" class="block text-sm font-medium text-gray-700 mb-2">
                                 {{ form.pdf.label }}
@@ -83,7 +75,6 @@
                             {{ form.pdf(class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100") }}
                         </div>
                         
-                        <!-- Submit Button -->
                         <div class="flex justify-end">
                             <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-lg transition duration-200">
                                 {{ form.submit.label.text }}
@@ -93,39 +84,6 @@
                 </div>
             </div>
         </main>
-
-        <!-- Footer -->
-        
     </div>
 </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Create Recipe</title>
-</head>
-<body>
-    <h1>Create Recipe</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {{ form.csrf_token }}
-        <p>
-            {{ form.name.label }}<br>
-            {{ form.name(size=32) }}
-        </p>
-        <p>
-            {{ form.url.label }}<br>
-            {{ form.url(size=32) }}
-        </p>
-        <p>
-            {{ form.description.label }}<br>
-            {{ form.description(rows=4, cols=50) }}
-        </p>
-        <p>
-            {{ form.pdf.label }}<br>
-            {{ form.pdf() }}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
-</body>
-</html> -->

@@ -30,23 +30,28 @@
 </head>
 <body class="bg-gray-50 font-sans">
     <div class="min-h-screen flex flex-col">
-        <!-- Header -->
         <header class="bg-white shadow-sm">
             <div class="container mx-auto px-4 py-6">
                 <h1 class="text-3xl font-bold text-gray-800">🍳 Recepty</h1>
             </div>
         </header>
 
-        <!-- Main Content -->
         <main class="flex-grow container mx-auto px-4 py-8">
-            <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
                 <a href="{{ url_for('create') }}" class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200 text-center">
                     + Vytvořit nový recept
                 </a>
             </div>
 
-            <!-- Recipes List -->
+            <div class="mb-8">
+                <form action="/" method="get" class="flex items-center">
+                    <input type="text" name="search" placeholder="Hledat recept..." class="w-full px-4 py-2 rounded-lg shadow-sm focus:ring focus:ring-primary-500 focus:outline-none">
+                    <button type="submit" class="ml-4 bg-secondary-500 hover:bg-secondary-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+                        Hledat
+                    </button>
+                </form>
+            </div>
+
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-200">
                     <h2 class="text-xl font-semibold text-gray-800">Seznam receptů</h2>

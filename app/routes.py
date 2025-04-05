@@ -9,7 +9,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    recipes = session.query(Recipe).all()
+    search = request.args.get('search')
+    if search:
+        recipes = session.query(Recipe).filter(Recipe.name.contains(search)).all()
+    else:
+        recipes = session.query(Recipe).all()
     return render_template('index.html', recipes=recipes)
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -32,7 +36,6 @@ def create():
 
             file_path = os.path.join(recipe_folder, filename)
             
-            # Check for duplicate filenames
             base, ext = os.path.splitext(filename)
             counter = 1
             while os.path.exists(file_path):
