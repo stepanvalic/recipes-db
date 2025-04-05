@@ -55,7 +55,9 @@ def create():
 @app.route('/recipe/<int:recipe_id>')
 def recipe(recipe_id):
     recipe = session.query(Recipe).get(recipe_id)
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], recipe.pdf_path)
+    file_path = None
+    if recipe and recipe.pdf_path:
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], recipe.pdf_path)
     return render_template('recipe.html', recipe=recipe, file_path=file_path)
 
 @app.route('/uploads/<path:filename>')
